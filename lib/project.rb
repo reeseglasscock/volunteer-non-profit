@@ -26,6 +26,10 @@ class Project
     @id = result.first["id"].to_i
   end
 
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{self.id};")
+  end
+
   def self.find(id)
     return_project = DB.exec("SELECT * FROM projects WHERE id = #{id};")
     id = return_project.first["id"].to_i
