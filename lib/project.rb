@@ -1,6 +1,12 @@
-class Project 
-    def initialize(attr)
-        @name = params[:name]
-        @id = params[:name]
-    end
+class Project
+  def initialize(attr)
+    @title = attr[:title]
+    @id = attr[:name]
+  end
+
+  def title
+    @title
+  end
+
+
 end
