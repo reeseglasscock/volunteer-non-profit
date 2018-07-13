@@ -1,7 +1,7 @@
 class Volunteer
   attr_reader(:name, :id, :project_id)
 
-  def initilize(attr)
+  def initialize(attr)
     @name = attr[:name]
     @id = attr[:id]
     @project_id = attr[:project_id]
@@ -13,6 +13,8 @@ class Volunteer
     returned_volunteers.each do |volunteer|
       id = volunteer["id"].to_i
       name = volunteer["name"]
+      project_id = volunteer["project_id"].to_i
+      binding.pry
       volunteers.push(Volunteer.new({:id => id, :name => name, :project_id => project_id}))
     end
     volunteers
