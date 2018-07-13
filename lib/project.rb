@@ -1,11 +1,18 @@
 class Project
   def initialize(attr)
     @title = attr[:title]
-    @id = attr[:name]
+    @id = attr[:id]
   end
 
-  def title
-    @title
+  def self.all()
+    returned_projects = DB.exec("SELECT * FROM projects;")
+    projects = []
+    returned_projects.each do |project|
+      id = project["id"].to_i
+      title = project["title"]
+      projects.push(Project.new({:id => id, :title => title}))
+    end
+    projects
   end
 
 
