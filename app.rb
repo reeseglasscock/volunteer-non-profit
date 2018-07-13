@@ -6,14 +6,6 @@ require('./lib/volunteer')
 require('pg')
 require('pry')
 
-# configure :development do
-#   set :database, {adapter: 'postgresql',  encoding: 'unicode', database: 'volunteer_tracker_test', pool: 2}
-# end
-#
-# configure :production do
-#   set :database, {adapter: 'postgresql',  encoding: 'unicode', database: 'volunteer_tracker_test', pool: 2}
-# end
-
 DB = PG.connect({:dbname => 'volunteer_tracker_test'})
 
 get('/') do
