@@ -53,5 +53,4 @@ class Project
     end
     volunteers
   end
-
 end
