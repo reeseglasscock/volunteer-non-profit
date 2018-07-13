@@ -37,4 +37,9 @@ class Project
     project = Project.new({:title => title, :id => id})
   end
 
+  def update(attr)
+    @title = attr.fetch(:title)
+    DB.exec("UPDATE projects SET title = '#{title}' WHERE id = #{self.id};")
+  end
+
 end
