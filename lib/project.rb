@@ -48,7 +48,6 @@ class Project
     returned_volunteers.each do |volunteer|
       id = volunteer["id"].to_i
       name = volunteer["name"]
-      binding.pry
       volunteers.push(Volunteer.new({:id => id, :name => name}))
     end
     volunteers
