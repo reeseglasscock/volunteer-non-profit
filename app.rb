@@ -27,3 +27,14 @@ get('/project/:id') do
   @projects = Project.all
   erb(:manage_project)
 end
+
+patch('/project/:id') do
+  new_title = params["update_project"]
+  id = params[:id].to_i
+  @project = Project.find(id)
+  binding.pry
+  @project.update({:title => new_title})
+  update_title = params["update_project"]
+  @projects = Project.all
+  erb(:manage_project)
+end
