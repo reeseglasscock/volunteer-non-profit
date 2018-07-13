@@ -17,8 +17,12 @@ class Project
   end
 
   def ==(another_project)
-    binding.pry
     self.title.==(another_project.title)
+  end
+
+  def save
+    result = DB.exec("INSERT INTO projects (name) VALUES ('#{title}') RETURNING id")
+    @id = result.first["id"].to_i
   end
 
 end
