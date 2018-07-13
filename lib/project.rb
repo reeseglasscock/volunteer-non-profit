@@ -1,5 +1,5 @@
 class Project
-  attr_reader(:title, :id)
+  attr_reader(:title, :id, :name, :project_id)
 
   def initialize(attr)
     @title = attr[:title]
@@ -43,6 +43,15 @@ class Project
   end
 
   def volunteers
+    returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{id};")
+    volunteers = []
+    returned_volunteers.each do |volunteer|
+      id = volunteer["id"].to_i
+      name = volunteer["name"]
+      binding.pry
+      volunteers.push(Volunteer.new({:id => id, :name => name}))
+    end
+    volunteers
   end
 
 end
