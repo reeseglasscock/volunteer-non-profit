@@ -1,4 +1,5 @@
 class Project
+  attr_reader(:title, :id)
   def initialize(attr)
     @title = attr[:title]
     @id = attr[:id]
@@ -15,5 +16,9 @@ class Project
     projects
   end
 
+  def ==(another_project)
+    binding.pry
+    self.title.==(another_project.title)
+  end
 
 end
