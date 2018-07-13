@@ -1,5 +1,6 @@
 class Project
   attr_reader(:title, :id)
+
   def initialize(attr)
     @title = attr[:title]
     @id = attr[:id]
@@ -21,7 +22,7 @@ class Project
   end
 
   def save
-    result = DB.exec("INSERT INTO projects (name) VALUES ('#{title}') RETURNING id")
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{title}') RETURNING id")
     @id = result.first["id"].to_i
   end
 
