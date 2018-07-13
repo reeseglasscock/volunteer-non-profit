@@ -42,4 +42,7 @@ class Project
     DB.exec("UPDATE projects SET title = '#{title}' WHERE id = #{self.id};")
   end
 
+  def volunteers
+  end
+
 end
