@@ -14,7 +14,6 @@ class Volunteer
       id = volunteer["id"].to_i
       name = volunteer["name"]
       project_id = volunteer["project_id"].to_i
-      binding.pry
       volunteers.push(Volunteer.new({:id => id, :name => name, :project_id => project_id}))
     end
     volunteers
@@ -37,6 +36,7 @@ class Volunteer
     return_volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};")
     id = return_volunteer.first["id"].to_i
     name = return_volunteer.first["name"]
+    project_id = return_volunteer.first["project_id"]
     volunteer = Volunteer.new({:name => name, :id => id, :project_id => project_id})
   end
 
