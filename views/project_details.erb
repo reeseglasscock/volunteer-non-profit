@@ -3,3 +3,12 @@
 <a href="/project/<%= @project.id %>/edit"><button type="button" name="button">Edit Project</button></a>
 
 <a href="/"><button type="button" name="button">Return Home</button></a>
+
+<% if @volunteers.any? %>
+  <h2>Assigned Volunteers:</h2>
+  <% @project.volunteers.each do |volunteer| %>
+    <ul>
+      <li><%= volunteer.name %></li>
+    </ul>
+  <% end %>
+<% end %>

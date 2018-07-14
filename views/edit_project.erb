@@ -31,7 +31,7 @@
   <% if @volunteers.any? %>
     <% @project.volunteers.each do |volunteer| %>
       <ul>
-        <li><%= volunteer %></li>
+        <li><%= volunteer.name %></li>
       </ul>
     <% end %>
   <% end %>
