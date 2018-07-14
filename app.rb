@@ -79,12 +79,11 @@ end
 
 post('/project/:id/edit') do
   @project = Project.find(params["id"].to_i)
-    binding.pry
-  @volunteer = Volunteer.find(params["id"].to_i)
+  @volunteers = Volunteer.all
   volunteer_ids = params["volunteer_ids"]
   project_id = @project.id
-
-  @volunteer.update({:project_id => project_id})
+  @project.update({:volunteer_ids => volunteer_ids, :title => @project.title})
+  binding.pry
   @volunteers = Volunteer.all
   @projects = Project.all
   erb(:edit_project)

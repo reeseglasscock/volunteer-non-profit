@@ -1,10 +1,10 @@
 class Project
-  attr_reader(:title, :id, :name, :project_id)
+  attr_reader(:title, :id, :name, :project_id, :volunteer_ids)
 
   def initialize(attr)
     @title = attr[:title]
     @id = attr[:id]
-    # @volunteer_ids = [attr[:volunteer_ids]]
+    @volunteer_ids = [attr[:volunteer_ids]]
   end
 
   def self.all()
@@ -40,9 +40,16 @@ class Project
 
   def update(attr)
     @title = attr.fetch(:title)
-    # @volunteer_ids = attr.fetch(:volunteer_ids)
+    @volunteer_ids = attr.fetch(:volunteer_ids)
+    @project = Project.find(id.to_i)
+    binding.pry
     DB.exec("UPDATE projects SET title = '#{title}' WHERE id = #{self.id};")
     # DB.exec("UPDATE projects SET volunteer_id = #{volunteer_ids} WHERE id = #{self.id};")
+    @volunteer_ids.each do |item|
+      item = item.to_i
+      binding.pry
+      DB.exec("UPDATE volunteers SET project_id = #{@project.id} WHERE id = #{item};")
+    end
   end
 
   def volunteers

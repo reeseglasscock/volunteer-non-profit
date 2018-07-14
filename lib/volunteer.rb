@@ -1,5 +1,5 @@
 class Volunteer
-  attr_reader(:name, :id, :project_id, :title)
+  attr_reader(:name, :id, :project_id, :title, :volunteer_ids)
 
   def initialize(attr)
     @name = attr[:name]
@@ -42,8 +42,15 @@ class Volunteer
 
   def update(attr)
     @name = attr.fetch(:name)
-    # @project_id = attr.fetch(:project_id)
+    # @project_id = attr.fetch(:id)
     DB.exec("UPDATE volunteers SET name = '#{name}' WHERE id = #{self.id};")
+
+    index = 0
+    attr.fetch(:volunteer_ids, []).each do |volunteer_id|
+      DB.exec("INSERT INTO projects (volunteer_ids) VALUES (#{volunteer_id}) WHERE #{project.id} = #{self.id});")
+      index += 1
+    end
+    index = 0
     # DB.exec("UPDATE volunteers SET project_id = #{project_id} WHERE id = #{@project.id};")
   end
 
