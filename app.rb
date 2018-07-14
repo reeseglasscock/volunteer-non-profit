@@ -65,6 +65,20 @@ patch('/project/:id/edit') do
   erb(:edit_project)
 end
 
+post('/project/:id/edit') do
+  @project = Project.find(params["id"].to_i)
+
+  volunteer_ids = params["volunteer_ids"]
+  project_id = @project.id
+  binding.pry
+  @volunteer.update({:project_id => project_id})
+  @volunteers = Volunteer.all
+  @projects = Project.all
+  erb(:edit_project)
+
+
+end
+
 delete('/project/:id/edit') do
   @project = Project.find(params.fetch("id").to_i)
   @project.delete()

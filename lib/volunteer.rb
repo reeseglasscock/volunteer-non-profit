@@ -44,7 +44,7 @@ class Volunteer
     @name = attr.fetch(:name)
     @project_id = attr.fetch(:project_id)
     DB.exec("UPDATE volunteers SET name = '#{name}' WHERE id = #{self.id};")
-    DB.exec("UPDATE volunteers SET project_id = #{project_id} WHERE id = #{self.id};")
+    DB.exec("UPDATE volunteers SET project_id = #{project_id} WHERE id = #{@project.id};")
   end
 
 
