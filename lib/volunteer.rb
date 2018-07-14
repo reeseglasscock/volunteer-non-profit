@@ -49,6 +49,7 @@ class Volunteer
     volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};")
     project_id = volunteer.first["project_id"].to_i
     returned_project = DB.exec("SELECT * FROM projects WHERE id = #{project_id};")
+    returned_project.first["title"].to_s
     end
 
 end
