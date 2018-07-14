@@ -17,18 +17,13 @@ end
 post('/') do
   title = params["title"]
   name = params["name"]
-  if title != nil
+  if title != nil && title != ""
     new_project = Project.new({:id => nil, :title => title})
     new_project.save
-  elsif title == nil && name != nil
-    new_volunteer = Volunteer.new({:id => nil, :name => name, :project_id => nil})
+  elsif title == nil && name != nil && name != ""
+    new_volunteer = Volunteer.new({:id => nil, :name => name, :project_id => 0})
     new_volunteer.save
   end
-
-
-  binding.pry
-
-  # new_volunteer.save
   @projects = Project.all
   @volunteers = Volunteer.all
   erb(:index)

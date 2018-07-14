@@ -24,7 +24,7 @@ class Volunteer
   end
 
   def save
-    result = DB.exec("INSERT INTO volunteers (name) VALUES ('#{name}') RETURNING id;")
+    result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{name}', #{project_id}) RETURNING id;")
     @id = result.first["id"].to_i
   end
 
@@ -42,7 +42,9 @@ class Volunteer
 
   def update(attr)
     @name = attr.fetch(:name)
+    @project_id = attr.fetch(:project_id)
     DB.exec("UPDATE volunteers SET name = '#{name}' WHERE id = #{self.id};")
+    DB.exec("UPDATE volunteers SET project_id = #{project_id} WHERE id = #{self.id};")
   end
 
 

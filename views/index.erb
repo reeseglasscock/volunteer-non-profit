@@ -12,10 +12,16 @@
   <button type="submit">Add Volunteer</button>
 </form>
 
+<h4>Current Projects</h4>
 <% @projects.each do |project| %>
-  <p><a href="/project/<%= project.id %>"><%= project.title%></a></p>
+  <ul>
+    <li><a href="/project/<%= project.id %>"><%= project.title%></a></li>
+  </ul>
 <% end %>
 
+<h4>Current Volunteers</h4>
 <% @volunteers.each do |volunteer| %>
-  <p><a href="/volunteer/<%= volunteer.id %>"><%= volunteer.name %></a></p>
+  <ul>
+    <li><a href="/volunteer/<%= volunteer.id %>"><%= volunteer.name %></a></li>  
+  </ul>
 <% end %>
