@@ -42,16 +42,19 @@ class Volunteer
 
   def update(attr)
     @name = attr.fetch(:name)
-    # @project_id = attr.fetch(:id)
     DB.exec("UPDATE volunteers SET name = '#{name}' WHERE id = #{self.id};")
+  end
 
-    index = 0
-    attr.fetch(:volunteer_ids, []).each do |volunteer_id|
-      DB.exec("INSERT INTO projects (volunteer_ids) VALUES (#{volunteer_id}) WHERE #{project.id} = #{self.id});")
-      index += 1
+  def project
+    volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};")
+    project_id = volunteer["project_id"].to_i
+    binding.pry
+    returned_project = DB.exec("SELECT * FROM projects WHERE id = project_id;")
+      id = volunteer["id"].to_i
+      name = volunteer["name"]
+      volunteers.push(Volunteer.new({:id => id, :name => name}))
     end
-    index = 0
-    # DB.exec("UPDATE volunteers SET project_id = #{project_id} WHERE id = #{@project.id};")
+    volunteers
   end
 
 
