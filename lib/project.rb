@@ -13,7 +13,8 @@ class Project
     returned_projects.each do |project|
       id = project["id"].to_i
       title = project["title"]
-      projects.push(Project.new({:id => id, :title => title}))
+      volunteer_ids = project["volunteer_ids"]
+      projects.push(Project.new({:id => id, :title => title, :volunteer_ids => volunteer_ids}))
     end
     projects
   end
@@ -39,16 +40,15 @@ class Project
   end
 
   def update(attr)
-    @title = attr.fetch(:title)
-    @volunteer_ids = attr.fetch(:volunteer_ids)
     @project = Project.find(id.to_i)
-    binding.pry
+    @title = attr.fetch(:title)
     DB.exec("UPDATE projects SET title = '#{title}' WHERE id = #{self.id};")
-    # DB.exec("UPDATE projects SET volunteer_id = #{volunteer_ids} WHERE id = #{self.id};")
-    @volunteer_ids.each do |item|
-      item = item.to_i
-      binding.pry
-      DB.exec("UPDATE volunteers SET project_id = #{@project.id} WHERE id = #{item};")
+    @volunteer_ids = attr.fetch(:volunteer_ids, nil)
+    if @volunteer_ids != [nil] && @volunteer_ids != nil
+      @volunteer_ids.each do |item|
+        item = item.to_i
+        DB.exec("UPDATE volunteers SET project_id = #{@project.id} WHERE id = #{item};")
+      end
     end
   end
 

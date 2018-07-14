@@ -18,7 +18,7 @@ post('/') do
   title = params["title"]
   name = params["name"]
   if title != nil && title != ""
-    new_project = Project.new({:id => nil, :title => title})
+    new_project = Project.new({:id => nil, :title => title, :volunteer_ids => nil})
     new_project.save
   elsif title == nil && name != nil && name != ""
     new_volunteer = Volunteer.new({:id => nil, :name => name, :project_id => 0})
@@ -83,7 +83,6 @@ post('/project/:id/edit') do
   volunteer_ids = params["volunteer_ids"]
   project_id = @project.id
   @project.update({:volunteer_ids => volunteer_ids, :title => @project.title})
-  binding.pry
   @volunteers = Volunteer.all
   @projects = Project.all
   erb(:edit_project)
