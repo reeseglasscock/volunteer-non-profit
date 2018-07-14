@@ -33,7 +33,7 @@ get('/project/:id') do
   id = params[:id].to_i
   @project = Project.find(id)
   @projects = Project.all
-  erb(:manage_project)
+  erb(:project_details)
 end
 
 get('/project/:id/edit') do
