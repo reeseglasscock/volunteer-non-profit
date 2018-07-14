@@ -30,7 +30,6 @@ end
 
 get('/project/edit/:id') do
   id = params[:id].to_i
-  binding.pry
   @project = Project.find(id)
   @projects = Project.all
   erb(:edit_project)
@@ -44,5 +43,5 @@ patch('/project/edit/:id') do
   @project.update({:title => new_title})
   update_title = params["update_project"]
   @projects = Project.all
-  erb(:manage_project)
+  erb(:edit_project)
 end
