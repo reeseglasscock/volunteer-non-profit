@@ -5,6 +5,17 @@
   <input type="text" name="title" value="" placeholder="Enter a project">
   <button type="submit">Create Project</button>
 </form>
-    <% @projects.each do |project| %>
-      <p><a href="/project/<%= project.id %>"><%= project.title%></a></p>
-    <% end %>
+
+<form class="form-group" action="/" method="post">
+  <label for="name">Project Title:</label>
+  <input type="text" name="name" value="" placeholder="Enter a volunteer name">
+  <button type="submit">Add Volunteer</button>
+</form>
+
+<% @projects.each do |project| %>
+  <p><a href="/project/<%= project.id %>"><%= project.title%></a></p>
+<% end %>
+
+<% @volunteers.each do |volunteer| %>
+  <p><a href="/volunteer/<%= volunteer.id %>"><%= volunteer.name %></a></p>
+<% end %>
