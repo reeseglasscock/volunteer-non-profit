@@ -22,6 +22,6 @@
 <h4>Current Volunteers</h4>
 <% @volunteers.each do |volunteer| %>
   <ul>
-    <li><a href="/volunteer/<%= volunteer.id %>"><%= volunteer.name %></a></li>  
+    <li><a href="/volunteer/<%= volunteer.id %>/edit"><%= volunteer.name %></a></li>  
   </ul>
 <% end %>

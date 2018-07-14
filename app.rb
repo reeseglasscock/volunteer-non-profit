@@ -37,19 +37,19 @@ get('/project/:id') do
   erb(:project_details)
 end
 
-get('/volunteer/:id') do
-  id = params[:id].to_i
-  @volunteer = Volunteer.find(id)
-  @volunteers = Volunteer.all
-  erb(:volunteer_details)
-end
-
 get('/project/:id/edit') do
   id = params[:id].to_i
   @project = Project.find(id)
   @projects = Project.all
   @volunteers = Volunteer.all
   erb(:edit_project)
+end
+
+get('/volunteer/:id/edit') do
+  id = params[:id].to_i
+  @volunteer = Volunteer.find(id)
+  @volunteers = Volunteer.all
+  erb(:edit_volunteer)
 end
 
 patch('/project/:id/edit') do
@@ -65,18 +65,29 @@ patch('/project/:id/edit') do
   erb(:edit_project)
 end
 
+patch('/volunteer/:id/edit') do
+  @volunteers = Volunteer.all
+  new_name = params["update_name"]
+  if new_name != nil && new_name != ""
+    id = params[:id].to_i
+    @volunteer = Volunteer.find(id)
+    @volunteer.update({:name => new_name})
+  end
+  @volunteers = Volunteer.all
+  erb(:edit_volunteer)
+end
+
 post('/project/:id/edit') do
   @project = Project.find(params["id"].to_i)
-
+    binding.pry
+  @volunteer = Volunteer.find(params["id"].to_i)
   volunteer_ids = params["volunteer_ids"]
   project_id = @project.id
-  binding.pry
+
   @volunteer.update({:project_id => project_id})
   @volunteers = Volunteer.all
   @projects = Project.all
   erb(:edit_project)
-
-
 end
 
 delete('/project/:id/edit') do
