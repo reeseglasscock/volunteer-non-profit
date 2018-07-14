@@ -28,14 +28,14 @@ get('/project/:id') do
   erb(:manage_project)
 end
 
-get('/project/edit/:id') do
+get('/project/:id/edit') do
   id = params[:id].to_i
   @project = Project.find(id)
   @projects = Project.all
   erb(:edit_project)
 end
 
-patch('/project/edit/:id') do
+patch('/project/:id/edit') do
   @projects = Project.all
   new_title = params["update_project"]
   id = params[:id].to_i
@@ -44,4 +44,12 @@ patch('/project/edit/:id') do
   update_title = params["update_project"]
   @projects = Project.all
   erb(:edit_project)
+end
+
+delete('/project/:id/edit') do
+  @project = Project.find(params.fetch("id").to_i)
+  @project.delete()
+  binding.pry
+  @projects = Project.all
+  redirect '/'
 end
