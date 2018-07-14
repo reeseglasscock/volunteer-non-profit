@@ -15,7 +15,7 @@
 </form>
 
 <h4>Add volunteers to this project:</h4>
-  <% if @volunteers.any? %>
+<% if @volunteers.any? %>
     <form action="/project/<%= @project.id %>/edit" method="post">
 
       <% @volunteers.each do |volunteer| %>

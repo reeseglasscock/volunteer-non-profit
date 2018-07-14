@@ -54,36 +54,16 @@ end
 
 patch('/project/:id/edit') do
   @projects = Project.all
+  @volunteers = Volunteer.all
   new_title = params["update_project"]
   if new_title != nil && new_title != ""
     id = params[:id].to_i
     @project = Project.find(id)
-    binding.pry
     @project.update({:title => new_title})
   end
   @projects = Project.all
   erb(:edit_project)
 end
-
-post('/project/:id/edit') do
-  @project = Project.find(params["id"].to_i)
-  volunteer_ids = params["volunteer_ids"]
-  title = @project.title
-  binding.pry
-  if volunteer_ids != [] && volunteer_ids != nil
-    @volunteers = Volunteer.all
-    binding.pry
-    @project.update({:volunteer_ids => volunteer_ids, :title => title})
-    binding.pry
-    erb(:edit_project)
-  else
-    @projects = Project.all
-    @volunteers = Volunteer.all
-    erb(:edit_project)
-  end
-end
-
-
 
 delete('/project/:id/edit') do
   @project = Project.find(params.fetch("id").to_i)

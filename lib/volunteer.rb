@@ -42,10 +42,8 @@ class Volunteer
 
   def update(attr)
     @name = attr.fetch(:name)
-    binding.pry
     @project_id = attr.fetch(:project_id)
     DB.exec("UPDATE volunteers SET name = '#{name}' WHERE id = #{self.id};")
-    binding.pry
     DB.exec("UPDATE volunteers SET project_id = #{project_id} WHERE id = #{self.id};")
   end
 
