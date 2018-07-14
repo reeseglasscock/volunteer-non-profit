@@ -47,15 +47,8 @@ class Volunteer
 
   def project
     volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};")
-    project_id = volunteer["project_id"].to_i
-    binding.pry
-    returned_project = DB.exec("SELECT * FROM projects WHERE id = project_id;")
-      id = volunteer["id"].to_i
-      name = volunteer["name"]
-      volunteers.push(Volunteer.new({:id => id, :name => name}))
+    project_id = volunteer.first["project_id"].to_i
+    returned_project = DB.exec("SELECT * FROM projects WHERE id = #{project_id};")
     end
-    volunteers
-  end
-
 
 end
