@@ -34,7 +34,6 @@ get('/project/:id') do
   @project = Project.find(id)
   @projects = Project.all
   @volunteers = Volunteer.all
-  binding.pry
   erb(:project_details)
 end
 
@@ -55,13 +54,12 @@ end
 
 patch('/project/:id/edit') do
   @projects = Project.all
-  @volunteers = Volunteer.all
   new_title = params["update_project"]
   if new_title != nil && new_title != ""
     id = params[:id].to_i
     @project = Project.find(id)
+    binding.pry
     @project.update({:title => new_title})
-    update_title = params["update_project"]
   end
   @projects = Project.all
   erb(:edit_project)
@@ -70,14 +68,19 @@ end
 post('/project/:id/edit') do
   @project = Project.find(params["id"].to_i)
   volunteer_ids = params["volunteer_ids"]
-  if volunteer_ids != []
-    id = params[:id].to_i
-    @project = Project.find(id)
-    @project.update({:title => new_title})
-    update_title = params["update_project"]
+  title = @project.title
+  binding.pry
+  if volunteer_ids != [] && volunteer_ids != nil
+    @volunteers = Volunteer.all
+    binding.pry
+    @project.update({:volunteer_ids => volunteer_ids, :title => title})
+    binding.pry
+    erb(:edit_project)
+  else
+    @projects = Project.all
+    @volunteers = Volunteer.all
+    erb(:edit_project)
   end
-  @projects = Project.all
-  erb(:edit_project)
 end
 
 
