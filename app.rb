@@ -94,3 +94,10 @@ delete('/project/:id/edit') do
   @projects = Project.all
   redirect '/'
 end
+
+delete('/volunteer/:id/edit') do
+  @volunteer = Volunteer.find(params.fetch("id").to_i)
+  @volunteer.delete()
+  @volunteers = Volunteer.all
+  redirect '/'
+end

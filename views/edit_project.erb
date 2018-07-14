@@ -27,4 +27,13 @@
     </form>
   <% end %>
 
+  <h4>Volunteers assigned to <%= @project.title %></h4>
+  <% if @volunteers.any? %>
+    <% @project.volunteers.each do |volunteer| %>
+      <ul>
+        <li><%= volunteer %></li>
+      </ul>
+    <% end %>
+  <% end %>
+
 <a href="/"><button type="button" name="button">Return Home</button></a>
