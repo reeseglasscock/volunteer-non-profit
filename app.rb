@@ -33,26 +33,54 @@ get('/project/:id') do
   id = params[:id].to_i
   @project = Project.find(id)
   @projects = Project.all
+  @volunteers = Volunteer.all
+  binding.pry
   erb(:project_details)
+end
+
+get('/volunteer/:id') do
+  id = params[:id].to_i
+  @volunteer = Volunteer.find(id)
+  @volunteers = Volunteer.all
+  erb(:volunteer_details)
 end
 
 get('/project/:id/edit') do
   id = params[:id].to_i
   @project = Project.find(id)
   @projects = Project.all
+  @volunteers = Volunteer.all
   erb(:edit_project)
 end
 
 patch('/project/:id/edit') do
   @projects = Project.all
+  @volunteers = Volunteer.all
   new_title = params["update_project"]
-  id = params[:id].to_i
-  @project = Project.find(id)
-  @project.update({:title => new_title})
-  update_title = params["update_project"]
+  if new_title != nil && new_title != ""
+    id = params[:id].to_i
+    @project = Project.find(id)
+    @project.update({:title => new_title})
+    update_title = params["update_project"]
+  end
   @projects = Project.all
   erb(:edit_project)
 end
+
+post('/project/:id/edit') do
+  @project = Project.find(params["id"].to_i)
+  volunteer_ids = params["volunteer_ids"]
+  if volunteer_ids != []
+    id = params[:id].to_i
+    @project = Project.find(id)
+    @project.update({:title => new_title})
+    update_title = params["update_project"]
+  end
+  @projects = Project.all
+  erb(:edit_project)
+end
+
+
 
 delete('/project/:id/edit') do
   @project = Project.find(params.fetch("id").to_i)

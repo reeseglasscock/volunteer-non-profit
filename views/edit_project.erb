@@ -14,4 +14,17 @@
   <button title="Delete Button" type="submit">Delete Project</button>
 </form>
 
+<h4>Add volunteers to this project:</h4>
+  <% if @volunteers.any? %>
+    <form action="/project/<%= @project.id %>/edit" method="post">
+
+      <% @volunteers.each do |volunteer| %>
+        <div class="checkbox">
+            <input type="checkbox" name="volunteer_ids[]" value="<%= volunteer.id %>"><%= volunteer.name %>
+        </div>
+      <% end %>
+      <button type="submit" class="btn btn-success">Add Volunteers</button>
+    </form>
+  <% end %>
+
 <a href="/"><button type="button" name="button">Return Home</button></a>
