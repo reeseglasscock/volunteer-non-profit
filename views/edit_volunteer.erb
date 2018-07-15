@@ -7,9 +7,17 @@
 
     <button class="btn btn-primary" type="submit">Update Volunteer</button>
   </form>
+</div>
 
+<div class="card listContainer">
+  <h2>Assigned Project</h2>
+  <% if @volunteer.project_id != "0" %>
+    <%= @volunteer.project%>
+  <% end %>
+</div>
 
-  <form class="form-group" action="/volunteer/<%= @volunteer.id %>/edit" method="post">
+<div class="car listContainer">
+  <form class="form-group mb-2" action="/volunteer/<%= @volunteer.id %>/edit" method="post">
     <div class="row">
       <div class="col">
         <input type="hidden" name="_method" value="delete">
@@ -20,11 +28,4 @@
       </div>
     </div>
   </form>
-</div>
-
-<div class="card listContainer">
-  <h2>Assigned Project</h2>
-  <% if @volunteer.project_id != "0" %>
-    <%= @volunteer.project%>
-  <% end %>
 </div>
