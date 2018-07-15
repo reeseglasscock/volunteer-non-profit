@@ -1,32 +1,30 @@
-<h2>Manage <%= @project.title %></h2>
+<div class="card listContainer">
+  <h2><%= @project.title %></h2>
 
-<form class="form-group" action="/project/<%= @project.id %>/edit" method="post">
-  <input name="_method" type="hidden" value="patch">
+  <form class="form-inline" action="/project/<%= @project.id %>/edit" method="post">
+    <input name="_method" type="hidden" value="patch">
 
-  <label for="update_project">New Name:</label>
-  <input type="text" name="update_project" value="">
+    <input class="form-control" type="text" name="update_project" value="" placeholder="Update Title">
 
-  <button type="submit">Update Project</button>
-</form>
+    <button class="btn btn-primary" type="submit">Update Project</button>
+  </form>
 
-<form class="" action="/project/<%= @project.id %>/edit" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button title="Delete Button" type="submit">Delete Project</button>
-</form>
+  <h4>Add volunteers to this project:</h4>
+  <% if @volunteers.any? %>
+      <form action="/project/<%= @project.id %>/edit" method="post">
 
-<h4>Add volunteers to this project:</h4>
-<% if @volunteers.any? %>
-    <form action="/project/<%= @project.id %>/edit" method="post">
+        <% @volunteers.each do |volunteer| %>
+          <div class="checkbox">
+              <input type="checkbox" name="volunteer_ids[]" value="<%= volunteer.id %>"><%= volunteer.name %>
+          </div>
+        <% end %>
+        <button type="submit" class="btn btn-success">Add Volunteers</button>
+      </form>
+    <% end %>
+</div>
 
-      <% @volunteers.each do |volunteer| %>
-        <div class="checkbox">
-            <input type="checkbox" name="volunteer_ids[]" value="<%= volunteer.id %>"><%= volunteer.name %>
-        </div>
-      <% end %>
-      <button type="submit" class="btn btn-success">Add Volunteers</button>
-    </form>
-  <% end %>
 
+<div class="card listContainer">
   <h4>Volunteers assigned to <%= @project.title %></h4>
   <% if @volunteers.any? %>
     <% @project.volunteers.each do |volunteer| %>
@@ -35,5 +33,18 @@
       </ul>
     <% end %>
   <% end %>
+</div>
 
-<a href="/"><button type="button" name="button">Return Home</button></a>
+<div class="card listContainer">
+  <div class="row">
+    <form class="col-6" action="/project/<%= @project.id %>/edit" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn btn-primary" title="Delete Button" type="submit">Delete Project</button>
+    </form>
+    <div class="col-6">
+      <a href="/"><button class="btn btn-primary" type="button" name="button">Return Home</button></a>
+    </div>
+  </div>
+
+
+</div>

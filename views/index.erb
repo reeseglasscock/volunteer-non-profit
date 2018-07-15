@@ -4,7 +4,7 @@
     <button class="btn btn-primary" type="submit">Create Project</button>
   </form>
 
-  <h4>Current Projects</h4>
+  <h4 class="headerText">Current Projects</h4>
   <% @projects.each do |project| %>
     <p><a href="/project/<%= project.id %>"><%= project.title%></a></p>
   <% end %>
@@ -16,7 +16,7 @@
     <button class="btn btn-primary" type="submit">Add Volunteer</button>
   </form>
 
-  <h4>Current Volunteers</h4>
+  <h4 class="headerText">Current Volunteers</h4>
   <% @volunteers.each do |volunteer| %>
       <p><a href="/volunteer/<%= volunteer.id %>/edit"><%= volunteer.name %></a></p>
   <% end %>

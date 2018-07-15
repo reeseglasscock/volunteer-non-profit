@@ -1,22 +1,30 @@
-<h2>Manage <%= @volunteer.name %></h2>
+<div class="card listContainer">
+  <h2>Manage <%= @volunteer.name %></h2>
 
-<form class="form-group" action="/volunteer/<%= @volunteer.id %>/edit" method="post">
-  <input name="_method" type="hidden" value="patch">
+  <form class="form-inline" action="/volunteer/<%= @volunteer.id %>/edit" method="post">
+    <input class="form-control" name="_method" type="hidden" value="patch">
+    <input class="form-control" type="text" name="update_name" value="" placeholder="Update Name">
 
-  <label for="update_name">New Name:</label>
-  <input type="text" name="update_name" value="">
-
-  <button type="submit">Update Volunteer</button>
-</form>
-
-<form class="form-group" action="/volunteer/<%= @volunteer.id %>/edit" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button title="Delete Button" type="submit">Delete Volunteer</button>
-</form>
-
-<% if @volunteer.project_id != "0" %>
-  <%= @volunteer.project%>
-<% end %>
+    <button class="btn btn-primary" type="submit">Update Volunteer</button>
+  </form>
 
 
-<a href="/"><button type="button" name="button">Return Home</button></a>
+  <form class="form-group" action="/volunteer/<%= @volunteer.id %>/edit" method="post">
+    <div class="row">
+      <div class="col">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn btn-primary" title="Delete Button" type="submit">Delete Volunteer</button>
+      </div>
+      <div class="col">
+        <a href="/"><button class="btn btn-primary" type="button" name="button">Return Home</button></a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="card listContainer">
+  <h2>Assigned Project</h2>
+  <% if @volunteer.project_id != "0" %>
+    <%= @volunteer.project%>
+  <% end %>
+</div>
