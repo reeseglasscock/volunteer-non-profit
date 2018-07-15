@@ -1,29 +1,23 @@
-<div class="">
-  <form class="form-group" action="/" method="post">
-    <label for="title">Project Title:</label>
-    <input type="text" name="title" value="" placeholder="Enter a project">
+<div class="card listContainer">
+  <form class="form-inline" action="/" method="post">
+    <input class="form-control" type="text" name="title" value="" placeholder="Enter a project">
     <button class="btn btn-primary" type="submit">Create Project</button>
   </form>
 
   <h4>Current Projects</h4>
   <% @projects.each do |project| %>
-    <ul>
-      <li><a href="/project/<%= project.id %>"><%= project.title%></a></li>
-    </ul>
+    <p><a href="/project/<%= project.id %>"><%= project.title%></a></p>
   <% end %>
 </div>
 
-<div class="">
-  <form class="form-group" action="/" method="post">
-    <label for="name">Volunteer Name</label>
-    <input type="text" name="name" value="" placeholder="Enter a volunteer name">
+<div class="card listContainer">
+  <form class="form-inline" action="/" method="post">
+    <input class="form-control" type="text" name="name" value="" placeholder="Enter a volunteer name">
     <button class="btn btn-primary" type="submit">Add Volunteer</button>
   </form>
 
   <h4>Current Volunteers</h4>
   <% @volunteers.each do |volunteer| %>
-    <ul>
-      <li><a href="/volunteer/<%= volunteer.id %>/edit"><%= volunteer.name %></a></li>
-    </ul>
+      <p><a href="/volunteer/<%= volunteer.id %>/edit"><%= volunteer.name %></a></p>
   <% end %>
 </div>

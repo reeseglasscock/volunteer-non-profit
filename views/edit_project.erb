@@ -1,4 +1,4 @@
-<h1>Manage <%= @project.title %></h1>
+<h2>Manage <%= @project.title %></h2>
 
 <form class="form-group" action="/project/<%= @project.id %>/edit" method="post">
   <input name="_method" type="hidden" value="patch">

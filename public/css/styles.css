@@ -1,13 +1,57 @@
 body{
-
+  font-family: 'Lato', sans-serif;
+  background-color: orange;
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 3em;
+  font-family: 'Playfair Display', serif;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: orange;
+}
+
+input {
+  margin-right: 5px;
+}
+
+.card {
+  box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
 }
 
 .jumbotron {
   background-color: teal;
   text-align: center;
   color: white;
+  padding: 1.5em;
+}
+
+.form-inline {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.headerText {
+  text-shadow: -2px -2px 8px black;
+}
+
+
+.listContainer {
+  color: white;
+  text-align: center;
+  margin: auto;
+  padding: 25px 20px 15px 20px;
+  border-bottom: 1.5px solid rgba(34,34,34,0.8);
+  border-right: none;
+  width: 50%;
+  box-shadow: 0 8px 6px -8px black;
+  -moz-box-shadow:    0 8px 6px -8px black;
+  -webkit-box-shadow: 0 8px 6px -8px black;
+  background-color: teal;
+  margin-bottom: 20px;
 }

@@ -1,14 +1,16 @@
-<h1>Manage <%= @project.title %></h1>
+<div class="card listContainer">
+  <h2 class="headerText"><%= @project.title %></h2>
 
-<a href="/project/<%= @project.id %>/edit"><button type="button" name="button">Edit Project</button></a>
+  <a href="/project/<%= @project.id %>/edit"><button class="btn btn-primary" type="button" name="button">Edit Project</button></a>
 
-<a href="/"><button type="button" name="button">Return Home</button></a>
+  <a href="/"><button class="btn btn-primary" type="button" name="button">Return Home</button></a>
+</div>
 
-<% if @volunteers.any? %>
-  <h2>Assigned Volunteers:</h2>
-  <% @project.volunteers.each do |volunteer| %>
-    <ul>
-      <li><%= volunteer.name %></li>
-    </ul>
+<div class="listContainer card">
+  <% if @volunteers.any? %>
+    <h3 class="headerText">Assigned Volunteers</h3>
+    <% @project.volunteers.each do |volunteer| %>
+        <p><%= volunteer.name %></p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
