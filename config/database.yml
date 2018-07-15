@@ -1,8 +1,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: volunteer_tracker
+  database: database_name
   pool: 2
+  username: your_username
+  password: your_password
 production:
   adapter: postgresql
   encoding: unicode

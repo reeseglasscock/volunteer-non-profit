@@ -5,7 +5,6 @@ class Volunteer
     @name = attr[:name]
     @id = attr[:id]
     @project_id = attr[:project_id]
-    ENV["DATABASE_URL"] = "mysql://#{ ENV['MY_DATABASE_PASSWORD'] }:#{ ENV['MY_DATABASE_USERNAME'] }@#{ ENV['MY_DATABASE_HOST'] }"
   end
 
   def self.all()
