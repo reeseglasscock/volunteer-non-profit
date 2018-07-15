@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: database_name
+  database: volunteer_tracker_test
   pool: 2
   username: your_username
   password: your_password
