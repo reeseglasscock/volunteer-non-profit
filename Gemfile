@@ -9,7 +9,3 @@ gem 'pg'
 gem 'rspec'
 gem 'pry'
 gem 'thin'
-
-group :production do
-  gem 'pg'
-end

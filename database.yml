@@ -1,15 +1,13 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: database_name
+  database: volunteer_tracker
   pool: 2
-  username: your_username
-  password: your_password
 production:
   adapter: postgresql
   encoding: unicode
   pool: 5
   host: <%= ENV['DATABASE_HOST'] %>
-  database: <%= ENV['dejt2at5iqoe0h'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
