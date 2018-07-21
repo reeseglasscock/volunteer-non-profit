@@ -10,7 +10,7 @@ configure :development do
   set :database, {adapter: 'postgresql',  encoding: 'unicode', database: 'volunteer_tracker_test', pool: 2, username: 'your_username', password: 'your_password'}
 end
 
-DB = PG.connect(ENV['DATABASE_URL'])
+DB = PG.connect(:dbname => 'volunteer_tracker')
 
 get('/') do
   @projects = Project.all
